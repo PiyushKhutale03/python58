@@ -1,29 +1,41 @@
 text = input("Enter a paragraph: ")
 
+# Convert to lowercase for consistency
+text = text.lower()
+
+# Remove punctuation (simple version)
+for ch in ",.!?;:":
+    text = text.replace(ch, "")
+
+# Split into words
 words = text.split()
+
+# 1. Total number of words
 print("Total number of words:", len(words))
 
-word_freq = {}
+# 2. Frequency of each word
+freq = {}
 for word in words:
-    word = word.lower() 
-    if word in word_freq:
-        word_freq[word] += 1
+    if word in freq:
+        freq[word] += 1
     else:
-        word_freq[word] = 1
+        freq[word] = 1
 
-print("\nWord frequencies:")
-for word, count in word_freq.items():
-    print(word, ":", count)
+print("\nWord Frequencies:")
+for word in freq:
+    print(word, ":", freq[word])
 
-sorted_words = sorted(word_freq.items(), key=lambda x: x[1], reverse=True)
+# 3. Top 3 most frequent words
+top_words = sorted(freq.items(), key=lambda x: x[1], reverse=True)[:3]
 print("\nTop 3 most frequent words:")
-for word, count in sorted_words[:3]:
+for word, count in top_words:
     print(word, ":", count)
 
-vowels = "aeiouAEIOU"
+# 4. Count vowels
+vowels = "aeiou"
 vowel_count = 0
 for char in text:
     if char in vowels:
         vowel_count += 1
 
-print("\nNumber of vowels in the text:", vowel_count)
+print("\nTotal number of vowels:", vowel_count)
