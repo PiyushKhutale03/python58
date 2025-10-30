@@ -1,27 +1,34 @@
 import pandas as pd
-
 #Series
-data = [10, 20, 30, 40]
-s = pd.Series(data)
+a=[1,7,2]
+myvar = pd.Series(a, index = ["x", "y", "z"])
+print(myvar)
+print(myvar["x"])
 
-data = [90, 85, 75]
-labels = ['Math', 'Science', 'English']
-marks = pd.Series(data, index=labels)
+calories={"day1":2400,"day2":3500,"day3":2600}
+myvar1=pd.Series(calories)
+print(myvar1)
 
-print(marks)
 
 #Dataframe
 
-print("\n")
-data1 = {
-    'Name': ['Alice', 'Bob', 'Charlie'],
-    'Age': [25, 30, 35],
-    'City': ['New York', 'London', 'Paris']
-}
+data = {"calories": [420, 380, 390],
+        "duration": [50, 40, 45]
+        }
 
-df = pd.DataFrame(data1)
+df = pd.DataFrame(data)
+
+print(df) 
+print(df.loc[[0,1]])
+
+
+#csv
+df=pd.read_csv('data.csv')
 print(df)
+print(pd.options.display.max_rows) 
 
 
+#json
+df = pd.read_json('data.json')
 
-
+print(df.to_string()) 
